@@ -6,11 +6,12 @@ require 'dm-validations'
 class MessageBoard < Sinatra::Base
 
   get '/' do
+    @messages = Message.all
     erb :index
   end
 
   post '/' do
-    Message.create #~~~~
+    @message = Message.create(content: params[:content])
     redirect to '/'
   end
 

@@ -2,3 +2,13 @@
   <input type='text' name='content'>
   <input type='submit' name='submit message'>
 </form>
+<body>
+  <ul id='messages'>
+  <% @messages.each do |message| %>
+    <li>
+      Illuminati message: <%= message.content%>
+    </li>
+  <%end%>
+
+</ul>
+</body>
