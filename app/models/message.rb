@@ -1,5 +1,8 @@
+require 'data_mapper'
 
 class Message
+  include DataMapper::Resource
+
   property :id, Serial
-  property :tweet, String
+  property :content, String
 end
