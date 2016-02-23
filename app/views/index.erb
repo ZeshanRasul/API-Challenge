@@ -2,11 +2,18 @@
   <input type='text' name='content'>
   <input type='submit' name='submit message'>
 </form>
+
 <body>
   <ul id='messages'>
   <% @messages.each do |message| %>
     <li>
       Illuminati message: <%= message.content%>
+      <!-- <form action='/' method='post'>
+        <input type='submit' name='edit' value = "edit">
+      </form>
+      <form action = '/' method='post'>
+        <input type='submit' value="delete">
+      </form> -->
     </li>
   <%end%>
 
