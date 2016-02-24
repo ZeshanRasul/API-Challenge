@@ -29,7 +29,10 @@ class MessageBoard < Sinatra::Base
   end
 
   post '/json/update' do
-    p request
+    p request.params['box'].to_json
+    yo = request.params['box'].to_json
+    body = JSON.parse(yo, :quirks_mode => true)
+    message = Message.update(content: body)
     redirect to '/'
   end
 

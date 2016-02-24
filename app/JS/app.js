@@ -18,7 +18,7 @@ deleteData = function() {
   var xmlhttp =
 
 
-updateData = function() {
+function getData() {
   var xmlhttp = new XMLHttpRequest();
   var url = '/json/update';
   alert('edit');
@@ -33,8 +33,8 @@ updateData = function() {
     xmlhttp.send()
   }
 }
-editButtonListener = function(){
-  var edit = document.getElementById('edit_button')
-  edit.addEventListener("click", updateData(), true)
-  p 'insdie listerenr'
+function editButtonListener(){
+  var edit = document.getElementById('edit_button');
+  edit.addEventListener("click", updateData);
+  console.log('insdie listerenr')
 }
