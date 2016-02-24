@@ -1,7 +1,9 @@
 
 
 getData = function() {
-  var xmlhttp =
+  var xmlhttp = new XMLHttpRequest();
+  var url = '/json/create'
+  
 }
 
 postData = function() {
@@ -13,5 +15,13 @@ deleteData = function() {
 }
 
 updateData = function() {
-  var xmlhttp =
+  var xmlhttp = new XMLHttpRequest();
+  var url = '/json/update';
+
+
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+    }
+  }
 }
