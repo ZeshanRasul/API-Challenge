@@ -8,10 +8,10 @@
   <% @messages.each do |message| %>
     <li>
       Illuminati message: <%= message.content%>
-      <form action='/' method='post'>
+      <form action='/' method='get'>
         <input type='submit' name='edit' value = "edit">
       </form>
-      <form action = '/' method='post'>
+      <form action = '/json/delete' method='get'>
         <input type='submit' value="delete">
       </form>
     </li>
