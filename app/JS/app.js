@@ -2,18 +2,10 @@
 
 getData = function() {
   var xmlhttp = new XMLHttpRequest();
-<<<<<<< HEAD
-  var url = '/';
-  xmlhttp.open("GET", url, true);
-  xmlhttp.send();
-=======
   var url = '/json/create'
-  
->>>>>>> efdbe5adb0cca7645d28183baaf1c9645ecd8f12
-}
 
 postData = function() {
-  var xmlhttp = new XMLHttpRequest();
+  var xmlhttp =
 
 }
 
@@ -22,19 +14,27 @@ updateData = function() {
   var xmlhttp =
 }
 
-<<<<<<< HEAD
 deleteData = function() {
   var xmlhttp =
-=======
+
+
 updateData = function() {
   var xmlhttp = new XMLHttpRequest();
   var url = '/json/update';
-
+  alert('edit');
+  p 'updata DAtata'
 
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-
+      document.getElementById('each_message').innerHTML = xmlhttp.responseText;
+      }
     }
+    xmlhttp.open("POST", url, true);
+    xmlhttp.send()
   }
->>>>>>> efdbe5adb0cca7645d28183baaf1c9645ecd8f12
+}
+editButtonListener = function(){
+  var edit = document.getElementById('edit_button')
+  edit.addEventListener("click", updateData(), true)
+  p 'insdie listerenr'
 }

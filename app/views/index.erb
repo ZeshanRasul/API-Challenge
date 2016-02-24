@@ -1,3 +1,6 @@
+<head>
+  <script src='/js/app.js'></script>
+</head>
 <form action='/json/create' method='post'>
   <input type='text' name='content'>
   <input type='submit' name='submit message'>
@@ -7,15 +10,22 @@
   <ul id='messages'>
   <% @messages.each do |message| %>
     <li>
-      Illuminati message: <%= message.content%>
-      <form action='/' method='get'>
-        <input type='submit' name='edit' value = "edit">
+      Illuminati message: <p id = 'each_message'><%= message.content%></p>
+      <form action='/json/update' method='post'>
+        <input id="edit_box" type="text" name="box">
+        <input id='edit_button' type='submit' name='edit' value = "edit">
       </form>
       <form action = '/json/delete' method='get'>
-        <input type='submit' value="delete">
+        <input id='delete_button' type='submit' value="delete">
       </form>
     </li>
   <%end%>
 
 </ul>
 </body>
+
+
+<script> function potato() {
+  // var edit = document.getElementById("edit_button")
+  document.getElementById("edit_box").value =  document.getElementId("each_message").value
+} </script>
