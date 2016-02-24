@@ -1,16 +1,4 @@
 <head>
-  <!-- <script> function editButtonListener(){
-    var edit = document.getElementById('edit_button');
-    edit.addEventListener("click", updateData);
-    // console.log('insdie listerenr')
-  }
-
-  function updateData() {
-    console.log("inside listerenr")
-  }
-   </script> -->
-   <script> editButtonListener() </script>
-
   <script src='js/app.js'></script>
 </head>
 <form action='/json/create' method='post'>
@@ -19,21 +7,21 @@
 </form>
 
 <body>
+
 <ul id='messages'>
+  <li>
   <% @messages.each do |message| %>
-    <li>
       Illuminati message: <p id = 'each_message'> <%= message.content%> </p>
       <form action='/json/update' method='post'>
-        <input id="edit_box" type="text" name="box">
-        <input id='edit_button' type='submit' name='edit' value = "edit">
+        <!-- <input id="edit_box" type="text" name="box"> -->
+        <input id='edit_button*adds something each time*' type='submit' name='edit' value = "edit">
       </form>
       <form action = '/json/delete' method='get'>
         <input id='delete_button' type='submit' value="delete">
       </form>
-    </li>
   <%end%>
-
+</li>
 </ul>
 
-<!-- <script> editButtonListener() </script> -->
+<script> editButtonListener() </script>
 </body>
