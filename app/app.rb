@@ -13,14 +13,20 @@ class MessageBoard < Sinatra::Base
     erb :index
   end
 
+  get '/json/read' do
+    messages = Message.all
+    json = JSON.generate(messages)
+  end
+
   post '/json/create' do
     # message = Message.create
-    p request.body.read
+    new_message_content = request.body.read
+    message = Message.create(content: new_message_content)
   end
 
   get '/json/delete' do
     # message from js, request body etc
-    message = Message.create
+    message = Message.(create)
   end
 
   post '/json/update' do
