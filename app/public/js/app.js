@@ -43,15 +43,16 @@ function updateData() {
     };
     xmlhttp.open("POST", url, true);
     xmlhttp.send(new_edit_message);
+    getData();
 }
 
-
-editButtonListener = function() {
-  var edit = document.getElementById('edit_button');
-  edit.addEventListener("click", updateData);
-  console.log('inside edit listener');
-
-};
+//
+// editButtonListener = function() {
+//   var edit = document.getElementById('edit_button');
+//   edit.addEventListener("click", updateData);
+//   console.log('inside edit listener');
+//
+// };
 
 
 createButtonListener = function() {
@@ -70,9 +71,32 @@ displayMessages = function(allMessagesObject){
   var eachMessage;
   var allMessagesObjectLength = allMessagesObject.length;
   for (var i = 0; i < allMessagesObjectLength; i++) {
-     eachMessage= allMessagesObject[(i)].content;
-    display.push(eachMessage + "<br>");
+    eachMessage= allMessagesObject[i].content;
+    // newMessage = document.createElement("p");
+    // newMessage.idName = allMessagesObject[i].id;
+    edit = createEditButton();
+    drillete = createDeleteButton();
+    display.push(eachMessage);
+    display.push(edit);
+    display.push(drillete);
+    display.push("<br>");
   }
   document.getElementById('all_messages').innerHTML = display;
 
+};
+
+createEditButton = function() {
+  console.log("potatoeditbutton");
+  var editButton = document.createElement("BUTTON");
+  var random = document.createTextNode("EDIT");
+  editButton.appendChild(random);
+  document.body.appendChild(editButton);
+};
+
+createDeleteButton = function() {
+  console.log("potatoeditbutton");
+  var editButton = document.createElement("BUTTON");
+  var random = document.createTextNode("DELETE");
+  editButton.appendChild(random);
+  document.body.appendChild(editButton);
 };
