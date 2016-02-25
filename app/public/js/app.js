@@ -46,13 +46,14 @@ function updateData() {
     getData();
 }
 
-//
-// editButtonListener = function() {
-//   var edit = document.getElementById('edit_button');
-//   edit.addEventListener("click", updateData);
-//   console.log('inside edit listener');
-//
-// };
+
+editButtonListener = function(messageId) {
+  var elementId = ["edit", messageId].join(" ");
+  var edit = document.getElementById(elementId);
+  edit.addEventListener("click", updateData);
+  console.log('inside edit listener');
+
+};
 
 
 createButtonListener = function() {
@@ -74,29 +75,35 @@ displayMessages = function(allMessagesObject){
     eachMessage= allMessagesObject[i].content;
     // newMessage = document.createElement("p");
     // newMessage.idName = allMessagesObject[i].id;
-    edit = createEditButton();
-    drillete = createDeleteButton();
+    var edit = createEditButton(allMessagesObject[i].id);
+    var drillete = createDeleteButton(allMessagesObject[i].id);
     display.push(eachMessage);
-    display.push(edit);
-    display.push(drillete);
+    // display.push(edit);
+    // display.push(drillete);
     display.push("<br>");
   }
   document.getElementById('all_messages').innerHTML = display;
 
 };
 
-createEditButton = function() {
-  console.log("potatoeditbutton");
-  var editButton = document.createElement("BUTTON");
-  var random = document.createTextNode("EDIT");
-  editButton.appendChild(random);
-  document.body.appendChild(editButton);
-};
-
-createDeleteButton = function() {
-  console.log("potatoeditbutton");
-  var editButton = document.createElement("BUTTON");
-  var random = document.createTextNode("DELETE");
-  editButton.appendChild(random);
-  document.body.appendChild(editButton);
-};
+// createEditButton = function(messageId) {
+//   console.log("edit button inside");
+//   var editButton = document.createElement("BUTTON");
+//   editButton.idName = messageId;
+//   var random = document.createTextNode("EDIT");
+//   editButton.appendChild(random);
+//   // editerButton = document.getElementById("edit_button");
+//   // editerButton.appendChild(editButton);
+//   document.body.appendChild(editButton);
+// };
+//
+// createDeleteButton = function(messageId) {
+//   console.log("delete button inside");
+//   var deleteButton = document.createElement("BUTTON");
+//   deleteButton.idName = messageId;
+//   var random = document.createTextNode("DELETE");
+//   deleteButton.appendChild(random);
+//   // drilleteButton = document.getElementById("delete_button");
+//   // drilleteButton.appendChild(deleteButton);
+//   document.body.appendChild(deleteButton);
+// };
