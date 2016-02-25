@@ -14,27 +14,17 @@ class MessageBoard < Sinatra::Base
   end
 
   post '/json/create' do
-    yo = request.params['content'].to_json
-    body = JSON.parse(yo, :quirks_mode => true)
-    message = Message.create(content: body)
-    redirect to ('/')
+    # message = Message.create
+    p request.body.read
   end
 
   get '/json/delete' do
-    yo = request.params['deleteshitbro']
-    body = JSON.parse(yo, :quirks_mode => true)
-    message = Message.create(content: body)
-    redirect to ('/')
-
+    # message from js, request body etc
+    message = Message.create
   end
 
   post '/json/update' do
     p request
-    # .params['box'].to_json
-    # yo = request.params['box'].to_json
-    # body = JSON.parse(yo, :quirks_mode => true)
-    # message = Message.update(content: body)
-    redirect to ('/')
   end
 
 

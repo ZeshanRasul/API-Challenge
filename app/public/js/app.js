@@ -1,43 +1,14 @@
-//
-//
-// getData = function() {
-//   var xmlhttp = new XMLHttpRequest();
-//   var url = '/json/create'
-//
-// postData = function() {
-//   var xmlhttp =
-//
-// }
-//
-//
-// updateData = function() {
-//   var xmlhttp =
-// }
-//
-// deleteData = function() {
-//   var xmlhttp =
-//
-//
-// function getData() {
-//   var xmlhttp = new XMLHttpRequest();
-//   var url = '/json/update';
-//   alert('edit');
-//   p 'updata DAtata'
-//
-//   xmlhttp.onreadystatechange = function() {
-//     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-//       document.getElementById('each_message').innerHTML = xmlhttp.responseText;
-//       }
-//     }
-//     xmlhttp.open("POST", url, true);
-//     xmlhttp.send()
-//   }
-// }
-// function editButtonListener(){
-//   var edit = document.getElementById('edit_button');
-//   edit.addEventListener("click", updateData);
-//   console.log('insdie listerenr')
-// }
+
+function createData() {
+  var xmlhttp = new XMLHttpRequest();
+  var url = '/json/create';
+  var userInput = document.getElementById('message_box').value;
+  xmlhttp.open("POST", url, true);
+  xmlhttp.send(userInput);
+}
+
+
+
 function getData() {
   var xmlhttp = new XMLHttpRequest();
   var url = '/json/update';
@@ -48,7 +19,7 @@ function getData() {
   new_edit_message = JSON.stringify(edit_message);
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      document.getElementById('each_message').innerHTML = new_edit_message;
+      document.getElementById('all_messages').innerHTML = new_edit_message;
       }
     };
     xmlhttp.open("POST", url, true);
@@ -59,5 +30,11 @@ function getData() {
 editButtonListener = function() {
   var edit = document.getElementById('edit_button');
   edit.addEventListener("click", getData);
-  console.log('inside listener');
+  console.log('inside edit listener');
+};
+
+createButtonListener = function() {
+  var edit = document.getElementById('submit_message');
+  edit.addEventListener("click", createData);
+  console.log('inside create listener');
 };
