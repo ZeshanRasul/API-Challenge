@@ -8,6 +8,8 @@ function createData() {
   document.getElementById('message_box').value = "";
   displayMessagesNil();
   getData();
+  console.log('inside createData');
+
 }
 
 function getData(){
@@ -49,24 +51,17 @@ function updateData() {
 }
 
 
-editButtonListener = function(messageId) {
-  var elementId = ["edit", messageId].join(" ");
-  var edit = document.getElementById(elementId);
-  edit.addEventListener("click", updateData);
-  console.log('inside edit listener');
-
-};
-
 
 createButtonListener = function() {
+  console.log('inside create listener');
   var edit = document.getElementById('submit_message');
   edit.addEventListener("click", createData);
-  console.log('inside create listener');
 };
 
 
 window.onload = function(){
   getData();
+  editButtonListener();
 };
 
 displayMessages = function(allMessagesObject){
@@ -82,12 +77,12 @@ displayMessages = function(allMessagesObject){
 };
 
 createEditButton = function(messageId) {
-    return "<input id =" + messageId + "class = edits" + " type = 'submit'" + "value = edit" + ">";
+    return "<input id ='edit" + messageId + "'" + "class = 'edits'" + " type = 'submit'" + "value = edit" + ">";
 
 };
 
 createDeleteButton = function(messageId) {
-    return "<input id =" + messageId + "class = deletes" + " type = 'submit'" + "value = delete" + ">";
+    return "<input id ='delete" + messageId + "'" + "class = 'deletes'" + " type = 'submit'" + "value = delete" + ">";
 
 };
 
@@ -95,6 +90,26 @@ displayMessagesNil = function(){
   document.getElementById('all_messages').innerHTML = null;
 
 };
+
+
+editButtonListener = function() {
+  console.log('inside edit listener');
+
+  // var elementId = ["edit", messageId].join("");
+  // var edits = document.getElementsByClassName("edits");
+  // var edit = edits.getElementById(messageId);
+  // edit.addEventListener("click", updateData);
+  editButtonList = document.getElementsByClassName('edits');
+  // specificButton = editButtonList.getElementById('edit1');
+  for (var i = 0; i < editButtonList.length; i++) {
+    editButtonList[i].addEventListener("click", function() {
+      updateData();
+    }, false);
+  }
+  // specificButton.addEventListener("click", updateData);
+
+};
+
 
 // createEditButton = function(messageId) {
 //   console.log("edit button inside");
