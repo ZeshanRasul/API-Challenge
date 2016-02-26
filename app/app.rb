@@ -23,9 +23,11 @@ class MessageBoard < Sinatra::Base
     message = Message.create(content: new_message_content)
   end
 
-  get '/json/delete' do
-    # message from js, request body etc
-    message = Message.(create)
+  post '/json/delete' do
+    id = request.body.read
+    p id
+    message = Message.get(id)
+    message.destroy
   end
 
   post '/json/update' do
@@ -33,7 +35,7 @@ class MessageBoard < Sinatra::Base
     parsed_message = JSON.parse(message)
     the_message = Message.get(parsed_message['message'][0].to_i)
     the_message.update(content: parsed_message['message'][1])
-    redirect ('/')
+
 
   end
 

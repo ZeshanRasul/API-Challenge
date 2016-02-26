@@ -22,6 +22,9 @@
       var allMessages = JSON.parse(xmlhttp.responseText);
       displayMessages(allMessages);
       editButtonListener();
+      console.log("just before delete button");
+      deleteButtonListener();
+      console.log("just after delete button");
     }
   };
   xmlhttp.open("GET", url, true);
@@ -42,14 +45,33 @@
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
       console.log("We're in a ready state!!!");
+      displayMessagesNil();
+      getData();
       }
     };
     xmlhttp.open("POST", url, true);
     xmlhttp.send(jsowned);
+
+
+};
+
+
+deleteData = function(messageId) {
+  var xmlhttp = new XMLHttpRequest();
+  var url = '/json/delete';
+  console.log('delete Data');
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      console.log("We're in a ready state!!!");
+      displayMessagesNil();
+      getData();
+      }
+    };
+    xmlhttp.open("POST", url, true);
+    xmlhttp.send(messageId);
     displayMessagesNil();
     getData();
 };
-
 
 
 createButtonListener = function() {
@@ -61,7 +83,6 @@ createButtonListener = function() {
 
 window.onload = function(){
   getData();
-
 };
 
 displayMessages = function(allMessagesObject){
@@ -92,12 +113,21 @@ displayMessagesNil = function(){
 
 editButtonListener = function() {
   console.log('inside edit listener');
-
-
   editButtonList = document.getElementsByClassName('edits');
   console.log(editButtonList);
   for(i=0; i<editButtonList.length; i++) {
     editButtonList[i].addEventListener("click", function() {
       updateData(this.id) } );
   }
+};
+
+deleteButtonListener = function() {
+  console.log('inside delete listener');
+  deleteButtonList = document.getElementsByClassName('deletes');
+  console.log(deleteButtonList);
+  for(i=0; i<deleteButtonList.length; i++) {
+    deleteButtonList[i].addEventListener("click", function() {
+      deleteData(this.id) } );
+  }
+
 };
