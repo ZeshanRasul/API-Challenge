@@ -35,15 +35,17 @@
   // var new_edit_message = '';
   console.log('update Data');
   var edit_message = prompt('edit');
-  var new_edit_message = JSON.stringify(edit_message);
-  console.log(new_edit_message);
+  console.log(edit_message);
+  var jsowned = JSON.stringify({message:[messageId,edit_message]});
+  console.log(jsowned);
+
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      document.getElementById('all_messages').innerHTML = new_edit_message;
+      console.log("We're in a ready state!!!");
       }
     };
     xmlhttp.open("POST", url, true);
-    xmlhttp.send(new_edit_message, messageId);
+    xmlhttp.send(jsowned);
     displayMessagesNil();
     getData();
 };
@@ -59,26 +61,7 @@ createButtonListener = function() {
 
 window.onload = function(){
   getData();
-  // editButtonListener = function() {
-  //   console.log('inside edit listener');
-  //   //
-  //   // var edit1 = document.getElementById('edit100');
-  //   // // edit1.addEventListener("click", updateData());
-  //   // console.log(edit1);
-  //
-  //   // var elementId = ["edit", messageId].join("");
-  //   // var edits = document.getElementsByClassName("edits");
-  //   // var edit = edits.getElementById(messageId);
-  //   // edit.addEventListener("click", updateData);
-  //   // editButtonList = document.getElementsByClassName('edits');
-  //   // editButton = document.getElementById('edit101');
-  //   // console.log(editButton);
-  //   // console.log(editButtonList[0].id);
-  //   console.log(document.getElementById('edit102'));
-  //   document.getElementById('edit101').addEventListener("click", console.log("hi hannah"));
-  // };
-  // var edit1 = document.getElementById('edit102');
-  // console.log(edit1);
+
 };
 
 displayMessages = function(allMessagesObject){
@@ -92,12 +75,12 @@ displayMessages = function(allMessagesObject){
 };
 
 createEditButton = function(messageId) {
-    return "<input id ='edit" + messageId + "'" + "class = 'edits'" + " type = 'submit'" + "value = edit" + ">";
+    return "<input id ='" + messageId + "'" + "class = 'edits'" + " type = 'submit'" + "value = edit" + ">";
 
 };
 
 createDeleteButton = function(messageId) {
-    return "<input id ='delete" + messageId + "'" + "class = 'deletes'" + " type = 'submit'" + "value = delete" + ">";
+    return "<input id ='" + messageId + "'" + "class = 'deletes'" + " type = 'submit'" + "value = delete" + ">";
 
 };
 
@@ -109,58 +92,12 @@ displayMessagesNil = function(){
 
 editButtonListener = function() {
   console.log('inside edit listener');
-  //
-  // var edit1 = document.getElementById('edit100');
-  // // edit1.addEventListener("click", updateData());
-  // console.log(edit1);
 
-  // var elementId = ["edit", messageId].join("");
-  // var edits = document.getElementsByClassName("edits");
-  // var edit = edits.getElementById(messageId);
-  // edit.addEventListener("click", updateData);
-  // editButtonList = document.getElementsByClassName('edits');
-  // editButton = document.getElementById('edit101');
-  // console.log(editButton);
-  // console.log(editButtonList[0].id);
-  // console.log(document.getElementById('edit1'));
-  // document.getElementById('edit1').addEventListener("click",function() { console.log("hi hannah"); });
 
   editButtonList = document.getElementsByClassName('edits');
   console.log(editButtonList);
   for(i=0; i<editButtonList.length; i++) {
     editButtonList[i].addEventListener("click", function() {
-      updateData() } );
+      updateData(this.id) } );
   }
 };
-// };
-//     console.log(editButtonList[i]);
-//     editButtonList[i].addEventListener("click", function() {
-//       updateData();
-//     }, false);
-//       console.log('end data Data');
-//   }
-//   specificButton.addEventListener("click", updateData);
-//
-//
-// }
-// createEditButton = function(messageId) {
-//   console.log("edit button inside");
-//   var editButton = document.createElement("BUTTON");
-//   editButton.idName = messageId;
-//   var random = document.createTextNode("EDIT");
-//   editButton.appendChild(random);
-//   // editerButton = document.getElementById("edit_button");
-//   // editerButton.appendChild(editButton);
-//   document.body.appendChild(editButton);
-// };
-//
-// createDeleteButton = function(messageId) {
-//   console.log("delete button inside");
-//   var deleteButton = document.createElement("BUTTON");
-//   deleteButton.idName = messageId;
-//   var random = document.createTextNode("DELETE");
-//   deleteButton.appendChild(random);
-//   // drilleteButton = document.getElementById("delete_button");
-//   // drilleteButton.appendChild(deleteButton);
-//   document.body.appendChild(deleteButton);
-// };

@@ -29,8 +29,12 @@ class MessageBoard < Sinatra::Base
   end
 
   post '/json/update' do
-    id = request.body.read[1]
-    message = Message.get(id: id)
+    message = request.body.read
+    parsed_message = JSON.parse(message)
+    the_message = Message.get(parsed_message['message'][0].to_i)
+    the_message.update(content: parsed_message['message'][1])
+    redirect ('/')
+
   end
 
 
