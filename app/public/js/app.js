@@ -6,6 +6,7 @@ function createData() {
   xmlhttp.open("POST", url, true);
   xmlhttp.send(userInput);
   document.getElementById('message_box').value = "";
+  displayMessagesNil();
   getData();
 }
 
@@ -43,6 +44,7 @@ function updateData() {
     };
     xmlhttp.open("POST", url, true);
     xmlhttp.send(new_edit_message);
+    displayMessagesNil();
     getData();
 }
 
@@ -68,21 +70,29 @@ window.onload = function(){
 };
 
 displayMessages = function(allMessagesObject){
-  var display = [];
+  // var display = [];
+  console.log("indisplaydatapotato");
   var eachMessage;
   var allMessagesObjectLength = allMessagesObject.length;
   for (var i = 0; i < allMessagesObjectLength; i++) {
     eachMessage= allMessagesObject[i].content;
-    // newMessage = document.createElement("p");
-    // newMessage.idName = allMessagesObject[i].id;
-    var edit = createEditButton(allMessagesObject[i].id);
-    var drillete = createDeleteButton(allMessagesObject[i].id);
-    display.push(eachMessage);
-    // display.push(edit);
-    // display.push(drillete);
-    display.push("<br>");
+    document.getElementById('all_messages').innerHTML += "<li>" + eachMessage + createEditButton(allMessagesObject[i].id) + createDeleteButton(allMessagesObject[i].id) + "</li>";
   }
-  document.getElementById('all_messages').innerHTML = display;
+
+};
+
+createEditButton = function(messageId) {
+    return "<input id =" + messageId + "class = edits" + " type = 'submit'" + "value = edit" + ">";
+
+};
+
+createDeleteButton = function(messageId) {
+    return "<input id =" + messageId + "class = deletes" + " type = 'submit'" + "value = delete" + ">";
+
+};
+
+displayMessagesNil = function(){
+  document.getElementById('all_messages').innerHTML = null;
 
 };
 

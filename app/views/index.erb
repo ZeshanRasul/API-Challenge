@@ -6,20 +6,11 @@
   <input id ='submit_message' type='submit' name='submit message'>
 <body>
       <ul id ='all_messages'>
-        <% @messages.each do |message| %>
 
-        <li id="<%= message.id %>">
-          <%= message.content %>
-          <button class="edit" id=edit "<%= message.id %>"> EDIT</button>
-          <button class="delete" id="<%= message.id %>"> DELETE</button>
-
-        </li>
-          <%end%>
 
       </ul>
 
 <script> createButtonListener()</script>
-<script> editButtonListener()</script>
 
 
 </body>

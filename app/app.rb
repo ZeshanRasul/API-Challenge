@@ -9,7 +9,6 @@ class MessageBoard < Sinatra::Base
   use Rack::MethodOverride
 
   get '/' do
-    @messages = Message.all
     erb :index
   end
 
