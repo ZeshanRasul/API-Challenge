@@ -29,7 +29,8 @@ class MessageBoard < Sinatra::Base
   end
 
   post '/json/update' do
-    p request
+    id = request.body.read[1]
+    message = Message.get(id: id)
   end
 
 

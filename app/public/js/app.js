@@ -1,5 +1,5 @@
 
-function createData() {
+  createData = function() {
   var xmlhttp = new XMLHttpRequest();
   var url = '/json/create';
   var userInput = document.getElementById('message_box').value;
@@ -10,9 +10,9 @@ function createData() {
   getData();
   console.log('inside createData');
 
-}
+};
 
-function getData(){
+ getData = function(){
 
   var xmlhttp = new XMLHttpRequest();
   var url = '/json/read';
@@ -20,35 +20,33 @@ function getData(){
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
       var allMessages = JSON.parse(xmlhttp.responseText);
-      console.log('this would be a function to display all messages');
-      console.log(allMessages[0].content);
-      console.log(allMessages);
       displayMessages(allMessages);
+      editButtonListener();
     }
   };
   xmlhttp.open("GET", url, true);
   xmlhttp.send();
-}
+};
 
 
-function updateData() {
+  updateData = function(messageId) {
   var xmlhttp = new XMLHttpRequest();
   var url = '/json/update';
+  // var new_edit_message = '';
   console.log('update Data');
-
-  edit_message = prompt('edit');
-  console.log(edit_message);
-  new_edit_message = JSON.stringify(edit_message);
+  var edit_message = prompt('edit');
+  var new_edit_message = JSON.stringify(edit_message);
+  console.log(new_edit_message);
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
       document.getElementById('all_messages').innerHTML = new_edit_message;
       }
     };
     xmlhttp.open("POST", url, true);
-    xmlhttp.send(new_edit_message);
+    xmlhttp.send(new_edit_message, messageId);
     displayMessagesNil();
     getData();
-}
+};
 
 
 
@@ -61,12 +59,29 @@ createButtonListener = function() {
 
 window.onload = function(){
   getData();
-  editButtonListener();
+  // editButtonListener = function() {
+  //   console.log('inside edit listener');
+  //   //
+  //   // var edit1 = document.getElementById('edit100');
+  //   // // edit1.addEventListener("click", updateData());
+  //   // console.log(edit1);
+  //
+  //   // var elementId = ["edit", messageId].join("");
+  //   // var edits = document.getElementsByClassName("edits");
+  //   // var edit = edits.getElementById(messageId);
+  //   // edit.addEventListener("click", updateData);
+  //   // editButtonList = document.getElementsByClassName('edits');
+  //   // editButton = document.getElementById('edit101');
+  //   // console.log(editButton);
+  //   // console.log(editButtonList[0].id);
+  //   console.log(document.getElementById('edit102'));
+  //   document.getElementById('edit101').addEventListener("click", console.log("hi hannah"));
+  // };
+  // var edit1 = document.getElementById('edit102');
+  // console.log(edit1);
 };
 
 displayMessages = function(allMessagesObject){
-  // var display = [];
-  console.log("indisplaydatapotato");
   var eachMessage;
   var allMessagesObjectLength = allMessagesObject.length;
   for (var i = 0; i < allMessagesObjectLength; i++) {
@@ -94,23 +109,40 @@ displayMessagesNil = function(){
 
 editButtonListener = function() {
   console.log('inside edit listener');
+  //
+  // var edit1 = document.getElementById('edit100');
+  // // edit1.addEventListener("click", updateData());
+  // console.log(edit1);
 
   // var elementId = ["edit", messageId].join("");
   // var edits = document.getElementsByClassName("edits");
   // var edit = edits.getElementById(messageId);
   // edit.addEventListener("click", updateData);
+  // editButtonList = document.getElementsByClassName('edits');
+  // editButton = document.getElementById('edit101');
+  // console.log(editButton);
+  // console.log(editButtonList[0].id);
+  // console.log(document.getElementById('edit1'));
+  // document.getElementById('edit1').addEventListener("click",function() { console.log("hi hannah"); });
+
   editButtonList = document.getElementsByClassName('edits');
-  // specificButton = editButtonList.getElementById('edit1');
-  for (var i = 0; i < editButtonList.length; i++) {
+  console.log(editButtonList);
+  for(i=0; i<editButtonList.length; i++) {
     editButtonList[i].addEventListener("click", function() {
-      updateData();
-    }, false);
+      updateData() } );
   }
-  // specificButton.addEventListener("click", updateData);
-
 };
-
-
+// };
+//     console.log(editButtonList[i]);
+//     editButtonList[i].addEventListener("click", function() {
+//       updateData();
+//     }, false);
+//       console.log('end data Data');
+//   }
+//   specificButton.addEventListener("click", updateData);
+//
+//
+// }
 // createEditButton = function(messageId) {
 //   console.log("edit button inside");
 //   var editButton = document.createElement("BUTTON");
