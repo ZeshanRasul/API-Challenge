@@ -1,0 +1,10 @@
+body {
+    background-color: blue;
+    text-align: center;
+}
+
+#all_messages {
+  display: -ms-grid;
+display: grid;
+list-style-type: none
+}
